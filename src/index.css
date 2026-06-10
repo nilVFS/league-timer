@@ -1,0 +1,110 @@
+/* ==========================================================================
+   ФИНАЛЬНЫЙ ТИПОГРАФИЧЕСКИЙ БЛОК ДЛЯ OBS
+   ========================================================================== */
+
+/* Полностью изолируем экран OBS от глобальных паддингов сайта */
+.obs-screen-wrapper {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  box-sizing: border-box;
+}
+
+/* Контейнер строго по центру */
+.obs-center-container {
+  position: relative;
+  z-index: 20;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+/* Главный заголовок шрифтом Cormorant Garamond */
+.obs-title-garamond {
+  font-family: 'Cormorant Garamond', serif !important;
+  color: #e3ddd7 !important; /* Тот самый оригинальный кремово-белый цвет */
+  margin: 0 0 50px 0 !important;
+  padding: 0 !important;
+  text-transform: uppercase !important;
+  font-weight: 400 !important;
+  line-height: 0.82 !important;
+  
+  /* Переносим тени с макета */
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 14px 28px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(227, 221, 210, 0.04) !important;
+}
+
+/* Корректируем пропорции строк под макет */
+.obs-title-garamond .line-1 {
+  font-size: clamp(3rem, 6.5vw, 6.2rem) !important;
+  letter-spacing: 0.06em !important;
+}
+
+.obs-title-garamond .line-2 {
+  font-size: clamp(5.5rem, 12vw, 11.5rem) !important;
+  letter-spacing: 0.01em !important;
+  font-weight: 500 !important; /* Чуть плотнее, как на скрине */
+  margin-top: 5px;
+}
+
+/* Блок мета-данных (Дата + Таймер) */
+.obs-meta-garamond {
+  font-family: 'Cormorant Garamond', serif !important;
+  color: #e3ddd7 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 10px !important;
+  
+  text-shadow: 0 4px 14px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Дата 12.06.26 */
+.obs-meta-garamond .obs-date {
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem) !important;
+  letter-spacing: 0.12em !important;
+  opacity: 0.9;
+}
+
+/* Строка таймера */
+.obs-meta-garamond .obs-timer {
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem) !important;
+  letter-spacing: 0.06em !important;
+  font-variant-numeric: tabular-nums !important; /* Защита от тряски цифр */
+  display: flex;
+  align-items: center;
+}
+
+/* Выравнивание двоеточий в шрифте Garamond, чтобы они не падали вниз */
+.obs-meta-garamond .obs-timer .colon {
+  display: inline-block;
+  transform: translateY(-4px); 
+  margin: 0 4px;
+  opacity: 0.8;
+}
+
+.obs-meta-garamond .obs-timer .space {
+  margin-right: 8px;
+}
+
+/* Фикс центровки фонового силуэта */
+.hero-bg--figure {
+  background-position: center 65% !important;
+  background-size: auto 85vh !important;
+  opacity: 0.35 !important; /* Затемняем, чтобы белые буквы буквально горели на переднем плане */
+}
