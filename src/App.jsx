@@ -58,7 +58,7 @@ export default function App() {
         </h1>
 
         <div className="obs-meta-garamond">
-          <div className="obs-date">12.06.26</div>
+          <div className="obs-date">12.06.26 20:00 МСК</div>
           <div className="obs-timer">
             {countdown.days > 0 && (
               <>
