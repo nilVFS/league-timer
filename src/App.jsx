@@ -4,28 +4,26 @@ import React, { useEffect, useMemo, useState } from 'react';
 const TARGET_DATE_MS = new Date('2026-06-12T20:00:00+03:00').getTime();
 
 function useCountdown() {
-  const [timeLeft, setTimeLeft] = useState(TARGET_DATE_MS - Date.now());
+  // Храним чистую разницу (может быть отрицательной, если дата прошла)
+  const [diff, setDiff] = useState(TARGET_DATE_MS - Date.now());
 
   useEffect(() => {
-    if (timeLeft <= 0) return;
-
     const intervalId = setInterval(() => {
-      const remaining = TARGET_DATE_MS - Date.now();
-      setTimeLeft(remaining <= 0 ? 0 : remaining);
+      setDiff(TARGET_DATE_MS - Date.now());
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [timeLeft]);
+  }, []);
 
   return useMemo(() => {
-    if (timeLeft <= 0) {
-      return { days: 0, hours: '00', minutes: '00', seconds: '00', expired: true };
-    }
+    const expired = diff <= 0;
+    // Используем Math.abs, чтобы считать время "после" так же, как и "до"
+    const absTime = Math.abs(diff);
 
-    const seconds = Math.floor((timeLeft / 1000) % 60);
-    const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
-    const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
-    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const seconds = Math.floor((absTime / 1000) % 60);
+    const minutes = Math.floor((absTime / (1000 * 60)) % 60);
+    const hours = Math.floor((absTime / (1000 * 60 * 60)) % 24);
+    const days = Math.floor(absTime / (1000 * 60 * 60 * 24));
 
     const pad = (num) => String(num).padStart(2, '0');
 
@@ -34,9 +32,9 @@ function useCountdown() {
       hours: pad(hours),
       minutes: pad(minutes),
       seconds: pad(seconds),
-      expired: false
+      expired // пригодится, если захочешь поменять текст или цвет
     };
-  }, [timeLeft]);
+  }, [diff]);
 }
 
 export default function App() {
@@ -58,11 +56,14 @@ export default function App() {
         </h1>
 
         <div className="obs-meta-garamond">
-          <div className="obs-date">12.06.26 20:00 МСК</div>
-          <div className="obs-timer">
+          <div className="obs-date">
+            {countdown.expired ? 'Прошло с запуска:' : '12.06.26 20:00 МСК'}
+          </div>
+          <div className={`obs-timer ${countdown.expired ? 'timer-expired' : ''}`}>
             {countdown.days > 0 && (
               <>
-                <span>{countdown.days}день</span>
+                {/* Склонение слова "день" для красоты (опционально) */}
+                <span>{countdown.days}д</span>
                 <span className="space"> </span>
               </>
             )}
