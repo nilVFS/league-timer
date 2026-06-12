@@ -73,6 +73,7 @@ export default function App() {
             <span className="colon">:</span>
             <span>{countdown.seconds}</span>
           </div>
+          <div className="line-1">ССЫЛКА В ОПИСАНИИ</div>
         </div>
       </div>
     </div>

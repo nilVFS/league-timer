@@ -89,18 +89,23 @@
 
 /* Дата 12.06.26 */
 .obs-meta-garamond .obs-date {
-  font-size: clamp(2rem, 3.7vw, 3.2rem) !important;
+  font-size: clamp(2.5rem, 5vw, 5rem) !important;
   letter-spacing: 0.12em !important;
   opacity: 0.9;
 }
 
 /* Строка таймера */
 .obs-meta-garamond .obs-timer {
-  font-size: clamp(2rem, 3.7vw, 3.2rem) !important;
+  font-size: clamp(2.5rem, 5vw, 5rem) !important;
   letter-spacing: 0.06em !important;
   font-variant-numeric: tabular-nums !important; /* Защита от тряски цифр */
   display: flex;
   align-items: center;
+}
+
+.line-1 {
+  margin-top: 2rem;
+  font-size: clamp(3rem, 6.5vw, 6.2rem) !important;
 }
 
 /* Выравнивание двоеточий в шрифте Garamond, чтобы они не падали вниз */
